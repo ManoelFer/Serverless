@@ -1,0 +1,26 @@
+org: manoelfer
+app: image-analysis
+service: image-analysis
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - rekognition:DetectLabels
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - translate:TranslateText
+      Resource: "*"
+
+functions:
+  img-analysis:
+    handler: handler.main
+    events:
+      - http:
+          path: analysis
+          method: get

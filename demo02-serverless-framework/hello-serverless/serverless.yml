@@ -1,0 +1,18 @@
+org: manoelfer
+app: hello-serverless
+console: true
+service: hello-serverless
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
